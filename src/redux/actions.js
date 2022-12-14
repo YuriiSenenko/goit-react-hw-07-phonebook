@@ -1,35 +1,10 @@
-// actions:
-//   addContact
-//   deleteContact
-//   setStatusFilter
-//   addToLocalstorage
-//   getInLocalstorage
+import { createAction } from '@reduxjs/toolkit';
 
-// import { createAction } from '@reduxjs/toolkit';
+// pending
+export const fetchContactRequest = createAction('contacts/fetchContactRequest');
 
-// export const addContact = contact => {
-//   return {
-//     type: 'contacts/addContact',
-//     payload: {
-//       contact,
-//     },
-//   };
-// };
+//fulfilled
+export const fetchContactSeccess = createAction('contacts/fetchContactSeccess');
 
-// export const deleteContact = id => {
-//   return {
-//     type: 'contacts/deleteContact',
-//     payload: {
-//       id,
-//     },
-//   };
-// };
-
-// export const changeFilter = text => {
-//   return {
-//     type: 'filter/changeFilter',
-//     payload: {
-//       text,
-//     },
-//   };
-// };
+//rejected
+export const fetchContactError = createAction('contacts/fetchContactError');
