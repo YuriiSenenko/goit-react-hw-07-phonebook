@@ -1,25 +1,25 @@
 import css from './Form.module.css';
-import { nanoid } from 'nanoid';
+// import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { addContact } from 'redux/contactsSlice';
+// import { addContact } from 'redux/contactsSlice';
+import { addContact } from 'redux/operations';
 import { selectContacts } from 'redux/selectors';
 
 function Form() {
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
 
-  const { contacts } = useSelector(selectContacts);
+  const contacts = useSelector(selectContacts);
 
   const dispatch = useDispatch();
 
-  const formSubmitHandler = (name, number, id) => {
+  const formSubmitHandler = (name, phone) => {
     const normalizedName = name.toLowerCase();
-    const contactItem = {
-      id,
-      name: name,
-      number: number,
+    const contact = {
+      name,
+      phone,
     };
     const filteredContacts = contacts.filter(
       searchContact => searchContact.name.toLowerCase() === normalizedName
@@ -28,7 +28,7 @@ function Form() {
     if (filteredContacts.length > 0) {
       alert(`${name} is already in contacts`);
     } else {
-      dispatch(addContact(contactItem));
+      dispatch(addContact(contact));
     }
   };
 
@@ -48,7 +48,7 @@ function Form() {
 
   const handelSubmit = event => {
     event.preventDefault();
-    formSubmitHandler(name, number, nanoid());
+    formSubmitHandler(name, number);
     reset();
   };
   const reset = () => {
